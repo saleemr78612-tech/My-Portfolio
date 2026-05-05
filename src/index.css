@@ -1,37 +1,78 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@layer base {
+  * {
+    @apply font-inter antialiased;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
-body {
-  background: #0f172a;
-  color: white;
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-4 font-bold text-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-3xl shadow-2xl border-0 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/30 hover:shadow-xl active:scale-[0.97];
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-4 font-semibold text-lg bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl hover:bg-white dark:hover:bg-slate-700 text-slate-900 dark:text-white rounded-3xl shadow-xl border border-slate-200/50 dark:border-slate-700/50 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-slate-500/30 hover:shadow-2xl active:scale-[0.97];
+  }
+  
+  .btn-lg {
+    @apply px-12 py-6 text-xl;
+  }
+}
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .typing-cursor {
+    display: inline-block;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-right: 3px solid;
+    animation: blink 0.75s step-end infinite;
+  }
 }
 
-section {
-  padding: 60px 20px;
+@keyframes float {
+  0%, 100% { transform: translate3d(0,0,0); }
+  50% { transform: translate3d(0,-20px,0); }
 }
 
-.container {
-  max-width: 1100px;
-  margin: auto;
+@keyframes blink {
+  0%, 50% { border-color: transparent; }
+  51%, 100% { border-color: currentColor; }
 }
 
-button {
-  padding: 10px 20px;
-  border: none;
-  background: #38bdf8;
-  color: black;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: 0.3s;
+.particles-container {
+  position: absolute;
+  inset: 0;
 }
 
-button:hover {
-  background: #0ea5e9;
+.particle {
+  animation: float 6s ease-in-out infinite;
 }
-html {
-  scroll-behavior: smooth;
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-100/50 dark:bg-slate-900/50;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300/70 dark:bg-slate-600/70 rounded-full hover:bg-slate-400 dark:hover:bg-slate-500 border border-slate-100 dark:border-slate-900;
+}
+
+/* Selection */
+::selection {
+  @apply bg-blue-500/40 text-slate-900 dark:text-white;
 }
